@@ -1,0 +1,213 @@
+.wrapper {
+  padding: 6rem 0;
+  overflow: hidden;
+}
+
+.sectionHeading {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.sectionHeading h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.sectionHeading p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+/* The 3D scene container — applies the CSS perspective */
+.scene {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  perspective: 1200px;
+  perspective-origin: center center;
+  padding: 2rem 1rem;
+}
+
+/* Background static spine track */
+.spineTrack {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--glass-border);
+  transform: translateX(-50%);
+  border-radius: 3px;
+}
+
+/* The animated glowing fill */
+.spineFill {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 50%, #ff6ef7 100%);
+  transform: translateX(-50%);
+  border-radius: 3px;
+  z-index: 1;
+  transform-style: preserve-3d;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* One row per card — holds the card AND the connector */
+.cardRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.cardLeft {
+  flex-direction: row; /* card | connector | empty */
+  justify-content: flex-start;
+}
+
+.cardRight {
+  flex-direction: row-reverse; /* empty | connector | card */
+  justify-content: flex-start;
+}
+
+/* 3D Card — the main interactive element */
+.card3D {
+  width: 44%;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  cursor: default;
+  transition: box-shadow 0.3s ease;
+}
+
+.card3D:hover {
+  transform: rotateX(0deg) rotateY(0deg) scale(1.02) !important;
+}
+
+/* The horizontal connector line between card and spine */
+.connector {
+  height: 2px;
+  flex: 1;
+  max-width: 8%;
+  transform-origin: left center;
+}
+
+.cardRight .connector {
+  transform-origin: right center;
+}
+
+/* Shimmer / glass highlight effect */
+.shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.04) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: shimmerSlide 4s infinite ease-in-out;
+}
+
+@keyframes shimmerSlide {
+  0% { left: -100%; }
+  50% { left: 150%; }
+  100% { left: -100%; }
+}
+
+/* Card internals */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid transparent;
+}
+
+.iconCircle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stepBadge {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-left: auto;
+  opacity: 0.8;
+}
+
+.cardBody h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.cardBody p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+
+/* ====== Responsive ====== */
+@media (max-width: 768px) {
+  .spineTrack,
+  .spineFill {
+    left: 24px;
+    transform: none;
+  }
+
+  .cards {
+    gap: 3.5rem;
+  }
+
+  .cardRow,
+  .cardLeft,
+  .cardRight {
+    flex-direction: row !important;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .card3D {
+    width: calc(100% - 70px);
+  }
+
+  .connector {
+    width: 24px;
+    min-width: 24px;
+    max-width: 24px;
+  }
+}

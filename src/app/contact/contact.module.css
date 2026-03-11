@@ -1,0 +1,160 @@
+.contactContainer {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.header {
+  padding: 10rem 0 4rem;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contentSection {
+  padding: 2rem 0 8rem;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.infoArea {
+  position: relative;
+  padding-right: 2rem;
+}
+
+.infoArea h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.desc {
+  color: var(--text-muted);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.iconBox {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: rgba(0, 240, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.infoItem h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.infoItem p {
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.glowBox {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  background: var(--primary);
+  filter: blur(100px);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* Form */
+.formArea {
+  padding: 3rem;
+  background: rgba(20, 20, 20, 0.6);
+}
+
+.formArea h3 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputGroup label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.inputGroup input,
+.inputGroup textarea {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.inputGroup input:focus,
+.inputGroup textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px var(--primary-glow);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 992px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .infoArea {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .formArea {
+    padding: 2rem 1.5rem;
+  }
+}
